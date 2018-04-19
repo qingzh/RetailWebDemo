@@ -1,6 +1,6 @@
 
 if (window.DeviceOrientationEvent) {
-    $('#text1').html("support deviceorientation at 18:30");
+    $('#text1').html("support deviceorientation at 19:20");
     var lastAcc;    // 用来存储上一次的deviceorientation事件
     var orientationTime = new Date();
     window.addEventListener('deviceorientation', function(event) {
@@ -34,21 +34,24 @@ if (window.DeviceOrientationEvent) {
     $('#text1').html("Do NOT support deviceorientation!");
 }
 if (window.DeviceMotionEvent) {
-    var speed = 100;    // 用来判定的加速度阈值，太大了则很难触发
-    var x, y, z, lastX, lastY, lastZ;
-    x = y = z = lastX = lastY = lastZ = 0;
-    var index = 0;
+    var threshold = 100;    // 用来判定的加速度阈值，太大了则很难触发
+    var lastMotion;
+    var motionTime = new Date();
 
     window.addEventListener('devicemotion', function (event) {
-        if (index++ <= 10) {
+        if ('undefined' === lastMotion) { // initialization
+            lastMotion = event;;
             return;
         }
-        index = 0;
-        var acceleration = event.accelerationIncludingGravity;
-        x = acceleration.x;
-        y = acceleration.y;
-        $('#text6').html('x:' + (x-lastX) + '<br>y:' + (y-lastY));
-        lastX = x;
-        lastY = y;
+        var currentTime = new Date();
+        if (currentTIme - motionTime < 3000) {
+            return;
+        }
+        motionTime = new Date();
+        
+        var pre = lastMotion.accelerationIncludingGravity;
+        var cur = event.accelerationIncludingGravity;
+        $('#text6').html('x:' + (cur.x-pre.x) + '<br>y:' + (cur.y-pre.y)) + '<br>z:' + (cur.z-pre.z);
+        lastMotion = event;
     }, false);
 }
