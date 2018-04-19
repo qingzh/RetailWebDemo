@@ -1,6 +1,6 @@
 
 if (window.DeviceOrientationEvent) {
-    $('#text1').html("support deviceorientation");
+    $('#text1').html("support deviceorientation at 17:02");
     var lastAcc;    // 用来存储上一次的deviceorientation事件
     window.addEventListener('deviceorientation', function(event) {
         $('#text2').html('add event success');
