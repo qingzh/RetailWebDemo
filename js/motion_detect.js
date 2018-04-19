@@ -16,10 +16,10 @@ if (window.DeviceOrientationEvent) {
         delA = Math.min(delA, 360-delA);
         var delB = Math.abs(event.beta - lastAcc.beta);    // beta轴偏转角, (-180,180)
         var delG = Math.abs(event.gamma - lastAcc.gamma);    // gamma轴偏转角, (-90, 90)
-        var msg = "Alpha bias: " + (event.alpha < lastAcc.alphadelA + "<br>"
+        var msg = "Alpha bias: " + delA + "<br>"
         	+ "Beta bias: " + delB + "<br>"
         	+ "Gamma bias: " + delG + "<br>");
-        if (delA > 60) {
+        if (delA > 60 || delG > 30) {
             alert("Shake alpha! <br>" + "Alpha bias: " + delA + "<br>"
         	+ "Beta bias: " + delB + "<br>"
         	+ "Gamma bias: " + delG + "<br>");
