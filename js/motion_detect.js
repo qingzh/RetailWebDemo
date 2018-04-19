@@ -2,11 +2,17 @@
 if (window.DeviceOrientationEvent) {
     $('#text1').html("support deviceorientation at 18:30");
     var lastAcc;    // 用来存储上一次的deviceorientation事件
+    var orientationTime = new Date();
     window.addEventListener('deviceorientation', function(event) {
         if ('undefined' === typeof lastAcc) { // initialize
             lastAcc = event;
             return;
         }
+        var currentTime = new Date();
+        if (currentTime - orientationTime < 3000) {
+            return;
+        }
+        orientationTime = new Date();
         $('#text2').html('add event success: ' + new Date());
         $('#text3').html("Alpha: " + event.alpha + "<br>"
         	+ "Beta: " + event.beta + "<br>"
@@ -28,7 +34,7 @@ if (window.DeviceOrientationEvent) {
     $('#text1').html("Do NOT support deviceorientation!");
 }
 if (window.DeviceMotionEvent) {
-    var speed = 25;    // 用来判定的加速度阈值，太大了则很难触发
+    var speed = 100;    // 用来判定的加速度阈值，太大了则很难触发
     var x, y, z, lastX, lastY, lastZ;
     x = y = z = lastX = lastY = lastZ = 0;
     var index = 0;
