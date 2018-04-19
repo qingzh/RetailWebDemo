@@ -49,7 +49,7 @@ if (window.DeviceMotionEvent) {
         
         var pre = lastMotion.accelerationIncludingGravity;
         var cur = event.accelerationIncludingGravity;
-        $('#text6').html('x:' + (cur.x-pre.x) + '<br>y:' + (cur.y-pre.y)) + '<br>z:' + (cur.z-pre.z);
+        $('#text6').html('x:' + (cur.x-pre.x) + '<br>y:' + (cur.y-pre.y) + '<br>z:' + (cur.z-pre.z));
         lastMotion = event;
     }, false);
 }
