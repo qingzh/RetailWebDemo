@@ -1,6 +1,6 @@
 
 if (window.DeviceOrientationEvent) {
-    $('#text1').html("support deviceorientation at 18:05");
+    $('#text1').html("support deviceorientation at 18:30");
     var lastAcc;    // 用来存储上一次的deviceorientation事件
     window.addEventListener('deviceorientation', function(event) {
         if ('undefined' === typeof lastAcc) { // initialize
@@ -18,11 +18,9 @@ if (window.DeviceOrientationEvent) {
         var delG = Math.abs(event.gamma - lastAcc.gamma);    // gamma轴偏转角, (-90, 90)
         var msg = "Alpha bias: " + delA + "<br>"
         	+ "Beta bias: " + delB + "<br>"
-        	+ "Gamma bias: " + delG + "<br>");
+        	+ "Gamma bias: " + delG + "<br>";
         if (delA > 60 || delG > 30) {
-            alert("Shake alpha! <br>" + "Alpha bias: " + delA + "<br>"
-        	+ "Beta bias: " + delB + "<br>"
-        	+ "Gamma bias: " + delG + "<br>");
+            alert("Shake alpha! <br>" + msg);
         }
         lastAcc = event;    // 存储上一次的event
     }, false);
