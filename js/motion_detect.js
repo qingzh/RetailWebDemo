@@ -1,15 +1,14 @@
 
 if (window.DeviceOrientationEvent) {
     $('#text1').html("support deviceorientation at 19:20");
-    var lastAcc;    // 用来存储上一次的deviceorientation事件
+    var lastOrientation;    // 用来存储上一次的deviceorientation事件
     var orientationTime = new Date();
     window.addEventListener('deviceorientation', function(event) {
-        if ('undefined' === typeof lastAcc) { // initialize
-            lastAcc = event;
+        if ('undefined' === typeof lastOrientation) { // initialize
+            lastOrientation = event;
             return;
         }
-        var currentTime = new Date();
-        if (currentTime - orientationTime < 3000) {
+        if (new Date() - orientationTime < 2000) {
             return;
         }
         orientationTime = new Date();
@@ -18,17 +17,17 @@ if (window.DeviceOrientationEvent) {
         	+ "Beta: " + event.beta + "<br>"
         	+ "Gamma: " + event.gamma + "<br>");
         // alpha轴偏转角, (0,360)
-        var delA = Math.abs(event.alpha - lastAcc.alpha);
+        var delA = Math.abs(event.alpha - lastOrientation.alpha);
         delA = Math.min(delA, 360-delA);
-        var delB = Math.abs(event.beta - lastAcc.beta);    // beta轴偏转角, (-180,180)
-        var delG = Math.abs(event.gamma - lastAcc.gamma);    // gamma轴偏转角, (-90, 90)
+        var delB = Math.abs(event.beta - lastOrientation.beta);    // beta轴偏转角, (-180,180)
+        var delG = Math.abs(event.gamma - lastOrientation.gamma);    // gamma轴偏转角, (-90, 90)
         var msg = "Alpha bias: " + delA + "<br>"
         	+ "Beta bias: " + delB + "<br>"
         	+ "Gamma bias: " + delG + "<br>";
         if (delA > 60 || delG > 30) {
             alert("Shake alpha! <br>" + msg);
         }
-        lastAcc = event;    // 存储上一次的event
+        lastOrientation = event;    // 存储上一次的event
     }, false);
 } else {
     $('#text1').html("Do NOT support deviceorientation!");
@@ -43,8 +42,7 @@ if (window.DeviceMotionEvent) {
             lastMotion = event;;
             return;
         }
-        var currentTime = new Date();
-        if (currentTIme - motionTime < 3000) {
+        if (new Date() - motionTime < 2000) {
             return;
         }
         motionTime = new Date();
