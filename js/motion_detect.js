@@ -45,7 +45,7 @@ if (window.DeviceMotionEvent) {
         if (Math.abs(cur.x-pre.x) > 45 &&  Math.abs(cur.y-pre.y) > 30) {
             index = index % 3 + 1;
             $('.ablock').removeClass('selected');
-            $('.ablock[index=' + index).addClass('selected');
+            $('.ablock[index=' + index + ']').addClass('selected');
         }
         if (Math.abs(cur.z-pre.z) > 45 && Math.abs(cur.x-pre.x) < 30 &&  Math.abs(cur.y-pre.y) < 30) {
             $('.ablock.selected').click();
