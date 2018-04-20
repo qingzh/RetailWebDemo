@@ -41,9 +41,10 @@ if (window.DeviceMotionEvent) {
             return;
         }
         motionTime = new Date();
-        
+
         var pre = lastMotion.accelerationIncludingGravity;
         var cur = event.accelerationIncludingGravity;
+        alert("x: " + Math.abs(cur.x-pre.x) + "y: " + Math.abs(cur.y-pre.y) + "z: " + Math.abs(cur.z-pre.z));
         if (Math.abs(cur.x-pre.x) > 45 &&  Math.abs(cur.y-pre.y) > 30 && Math.abs(cur.z-pre.z) < 30) {
             index = index % 3 + 1;
             $('.ablock').removeClass('selected');
