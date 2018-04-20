@@ -50,12 +50,12 @@ if (window.DeviceMotionEvent) {
         var biasY = Math.abs(cur.y - pre.y);
         var biasZ = Math.abs(cur.z - pre.z);
 
-        if (biasX > biasZ && biasX > 30 && (biasX + biasY) > 45 && (new Date() - lastTime) > 1500) {
+        if (biasX > biasZ && biasX > 25 && (biasX + biasY) > 40 && (new Date() - lastTime) > 1500) {
             index = index % 3 + 1;
             $('.ablock').removeClass('selected');
             $('.ablock[index=' + index + ']').addClass('selected');
             lastTime = new Date();
-        } else if (biasZ > 30 && biasX < 15) {
+        } else if (biasZ > 25 && biasX < 15) {
             $('.ablock.selected a').click();
         }
     }, false);
