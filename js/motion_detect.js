@@ -1,3 +1,4 @@
+alert("Start Demo");
 
 if (window.DeviceOrientationEvent) {
     var lastOrientation;    // 用来存储上一次的deviceorientation事件
