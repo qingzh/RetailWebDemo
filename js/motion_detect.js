@@ -1,4 +1,4 @@
-alert("Start Demo @ 13:00");
+alert("Start Demo @ 13:10");
 
 if (window.DeviceOrientationEvent) {
     var lastOrientation;    // 用来存储上一次的deviceorientation事件
@@ -56,7 +56,7 @@ if (window.DeviceMotionEvent) {
             $('.ablock[index=' + index + ']').addClass('selected');
             lastTime = new Date();
         } else if (biasZ > 25 && biasX < 15) {
-            $('.ablock.selected a').click();
+            window.location.href = $('.ablock.selected a').attr('href');
         }
     }, false);
 }
