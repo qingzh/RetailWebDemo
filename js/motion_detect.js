@@ -1,4 +1,4 @@
-alert("Start Demo @ 12:50");
+alert("Start Demo @ 12:55");
 
 if (window.DeviceOrientationEvent) {
     var lastOrientation;    // 用来存储上一次的deviceorientation事件
@@ -29,6 +29,7 @@ if (window.DeviceMotionEvent) {
     var threshold = 100;    // 用来判定的加速度阈值，太大了则很难触发
     var lastMotion;
     var motionTime = new Date();
+    var lastTime = new Date();
     var index = 1;
     $('.ablock[index=1]').addClass('selected');
 
@@ -47,10 +48,11 @@ if (window.DeviceMotionEvent) {
         var biasX = Math.abs(cur.x - pre.x);
         var biasY = Math.abs(cur.y - pre.y);
         var biasZ = Math.abs(cur.z - pre.z);
-        if (biasX > biasZ && biasX > 30 && (biasX + biasY) > 45) {
+        if (biasX > biasZ && biasX > 30 && (biasX + biasY) > 45 && (new Date() - lastTime) > 2000) {
             index = index % 3 + 1;
             $('.ablock').removeClass('selected');
             $('.ablock[index=' + index + ']').addClass('selected');
+            lastTime = new Date();
         } else if (biasZ > 30 && biasX < 15) {
             $('.ablock.selected').click();
         }
