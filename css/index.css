@@ -33,7 +33,7 @@
 	line-height: 80px;
 }
 .ablock a {
-    color: black;
+    color: #232f3e;
     text-decoration: none;
     font-weight: bold;
 }
@@ -42,5 +42,5 @@
 }
 
 .ablock.selected a {
-    color: red;
+    color: #a75f7d;
 }
