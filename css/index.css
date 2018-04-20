@@ -24,3 +24,14 @@
 .rwd-page-footer {
 
 }
+
+.ablock {
+	height: 80px;
+	width: 100%;
+	text-align: center;
+	font-size: 28px;
+	line-height: 80px;
+}
+.ablock.selected {
+	background: rgba(35,47,62,0.1);
+}
