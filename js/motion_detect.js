@@ -44,14 +44,14 @@ if (window.DeviceMotionEvent) {
 
         var pre = lastMotion.accelerationIncludingGravity;
         var cur = event.accelerationIncludingGravity;
-        if (Math.abs(cur.z-pre.z) > 30) {
-            alert("x: " + Math.abs(cur.x-pre.x) + "y: " + Math.abs(cur.y-pre.y) + "z: " + Math.abs(cur.z-pre.z));
-        }
-        if (Math.abs(cur.x-pre.x) > 30 && (Math.abs(cur.y-pre.y) + Math.abs(cur.x-pre.x)) > 45 && Math.abs(cur.z-pre.z) < 20) {
+        var biasX = Math.abs(cur.x - pre.x);
+        var biasY = Math.abs(cur.y - pre.y);
+        var biasZ = Math.abs(cur.z - pre.z);
+        if (biasX > biasZ && biasX > 30 && (biasX + biasY) > 45) {
             index = index % 3 + 1;
             $('.ablock').removeClass('selected');
             $('.ablock[index=' + index + ']').addClass('selected');
-        } else if (Math.abs(cur.z-pre.z) > 30 && Math.abs(cur.x-pre.x) < 15) {
+        } else if (biasZ > 30 && biasX < 15) {
             $('.ablock.selected').click();
         }
         lastMotion = event;
