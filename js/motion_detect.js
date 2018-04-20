@@ -1,6 +1,5 @@
 
 if (window.DeviceOrientationEvent) {
-    $('#text1').html("support deviceorientation at 19:20");
     var lastOrientation;    // 用来存储上一次的deviceorientation事件
     var orientationTime = new Date();
     window.addEventListener('deviceorientation', function(event) {
@@ -8,14 +7,10 @@ if (window.DeviceOrientationEvent) {
             lastOrientation = event;
             return;
         }
-        if (new Date() - orientationTime < 2000) {
+        if (new Date() - orientationTime < 200) {
             return;
         }
         orientationTime = new Date();
-        $('#text2').html('add event success: ' + new Date());
-        $('#text3').html("Alpha: " + event.alpha + "<br>"
-        	+ "Beta: " + event.beta + "<br>"
-        	+ "Gamma: " + event.gamma + "<br>");
         // alpha轴偏转角, (0,360)
         var delA = Math.abs(event.alpha - lastOrientation.alpha);
         delA = Math.min(delA, 360-delA);
@@ -24,32 +19,37 @@ if (window.DeviceOrientationEvent) {
         var msg = "Alpha bias: " + delA + "<br>"
         	+ "Beta bias: " + delB + "<br>"
         	+ "Gamma bias: " + delG + "<br>";
-        if (delA > 60 || delG > 30) {
-            alert("Shake alpha! <br>" + msg);
-        }
         lastOrientation = event;    // 存储上一次的event
     }, false);
 } else {
-    $('#text1').html("Do NOT support deviceorientation!");
+    $('#hint').html("Do NOT support deviceorientation!");
 }
 if (window.DeviceMotionEvent) {
     var threshold = 100;    // 用来判定的加速度阈值，太大了则很难触发
     var lastMotion;
     var motionTime = new Date();
+    var index = 0;
 
     window.addEventListener('devicemotion', function (event) {
         if ('undefined' === lastMotion) { // initialization
             lastMotion = event;;
             return;
         }
-        if (new Date() - motionTime < 2000) {
+        if (new Date() - motionTime < 200) {
             return;
         }
         motionTime = new Date();
         
         var pre = lastMotion.accelerationIncludingGravity;
         var cur = event.accelerationIncludingGravity;
-        $('#text6').html('x:' + (cur.x-pre.x) + '<br>y:' + (cur.y-pre.y) + '<br>z:' + (cur.z-pre.z));
+        if (Math.abs(cur.x-pre.x) > 45 &&  Math.abs(cur.y-pre.y) > 30) {
+            index = index % 3 + 1;
+            $('.ablock').removeClass('selected');
+            $('.ablock[index=' + index).addClass('selected');
+        }
+        if (Math.abs(cur.z-pre.z) > 45 && Math.abs(cur.x-pre.x) < 30 &&  Math.abs(cur.y-pre.y) < 30) {
+            $('.ablock.selected').click();
+        }
         lastMotion = event;
     }, false);
 }
