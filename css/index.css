@@ -32,6 +32,15 @@
 	font-size: 28px;
 	line-height: 80px;
 }
+.ablock a {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
 .ablock.selected {
 	background: rgba(35,47,62,0.1);
+}
+
+.ablock.selected a {
+    color: red;
 }
