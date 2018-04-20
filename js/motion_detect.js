@@ -1,4 +1,4 @@
-alert("Start Demo @ 13:10");
+alert("Start Demo @ 13:30");
 
 if (window.DeviceOrientationEvent) {
     var lastOrientation;    // 用来存储上一次的deviceorientation事件
@@ -49,7 +49,9 @@ if (window.DeviceMotionEvent) {
         var biasX = Math.abs(cur.x - pre.x);
         var biasY = Math.abs(cur.y - pre.y);
         var biasZ = Math.abs(cur.z - pre.z);
-
+        if (biasX > 25 || biasZ > 25) {
+            alert("x: " + biasX + "; y: " + biasY + "; z: " + biasZ);
+        }
         if (biasX > biasZ && biasX > 25 && (biasX + biasY) > 35 && (new Date() - lastTime) > 1500) {
             index = index % 3 + 1;
             $('.ablock').removeClass('selected');
