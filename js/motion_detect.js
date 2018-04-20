@@ -51,7 +51,7 @@ if (window.DeviceMotionEvent) {
             index = index % 3 + 1;
             $('.ablock').removeClass('selected');
             $('.ablock[index=' + index + ']').addClass('selected');
-        } else if (Math.abs(cur.z-pre.z) > 30 && Math.abs(cur.x-pre.x) < 15 &&  (Math.abs(cur.y-pre.y) + Math.abs(cur.x-pre.x)) < 40) {
+        } else if (Math.abs(cur.z-pre.z) > 30 && Math.abs(cur.x-pre.x) < 15) {
             $('.ablock.selected').click();
         }
         lastMotion = event;
