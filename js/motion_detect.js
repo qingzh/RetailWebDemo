@@ -33,7 +33,7 @@ if (window.DeviceMotionEvent) {
 
     window.addEventListener('devicemotion', function (event) {
         if ('undefined' === typeof lastMotion) { // initialization
-            lastMotion = event;;
+            lastMotion = event;
             return;
         }
         if (new Date() - motionTime < 200) {
