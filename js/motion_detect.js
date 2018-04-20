@@ -1,4 +1,4 @@
-alert("Start Demo @ 14:30");
+alert("Demo version @ 15:00");
 
 if (window.DeviceOrientationEvent) {
     var lastOrientation;    // 用来存储上一次的deviceorientation事件
@@ -50,12 +50,12 @@ if (window.DeviceMotionEvent) {
         var biasZ = Math.abs(cur.z - pre.z);
         lastMotion = event;
         
-        if (biasX > biasZ && biasX > 20 && (biasX + biasY) > 30 && (new Date() - lastTime) > 1000) {
+        if (biasX > biasZ && biasX > 15 && (biasX + biasY) > 25 && (new Date() - lastTime) > 1000) {
             index = index % 3 + 1;
             $('.ablock').removeClass('selected');
             $('.ablock[index=' + index + ']').addClass('selected');
             lastTime = new Date();
-        } else if (biasZ > 25 && biasX < 15) {
+        } else if (biasZ > 20 && (biasZ-biasX) >= 10) {
             window.location.href = $('.ablock.selected a').attr('href');
         }
     }, false);
