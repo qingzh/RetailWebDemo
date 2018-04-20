@@ -28,7 +28,8 @@ if (window.DeviceMotionEvent) {
     var threshold = 100;    // 用来判定的加速度阈值，太大了则很难触发
     var lastMotion;
     var motionTime = new Date();
-    var index = 0;
+    var index = 1;
+    $('.ablock[index=1]').addClass('selected');
 
     window.addEventListener('devicemotion', function (event) {
         if ('undefined' === typeof lastMotion) { // initialization
@@ -42,12 +43,11 @@ if (window.DeviceMotionEvent) {
         
         var pre = lastMotion.accelerationIncludingGravity;
         var cur = event.accelerationIncludingGravity;
-        if (Math.abs(cur.x-pre.x) > 45 &&  Math.abs(cur.y-pre.y) > 30 && Math.abs(cur.z-pre.z) {
+        if (Math.abs(cur.x-pre.x) > 45 &&  Math.abs(cur.y-pre.y) > 30 && Math.abs(cur.z-pre.z) < 30) {
             index = index % 3 + 1;
             $('.ablock').removeClass('selected');
             $('.ablock[index=' + index + ']').addClass('selected');
-        }
-        if (Math.abs(cur.z-pre.z) > 45 && Math.abs(cur.x-pre.x) < 30 &&  Math.abs(cur.y-pre.y) < 30) {
+        } else if (Math.abs(cur.z-pre.z) > 45 && Math.abs(cur.x-pre.x) < 30 &&  Math.abs(cur.y-pre.y) < 30) {
             $('.ablock.selected').click();
         }
         lastMotion = event;
