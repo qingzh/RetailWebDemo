@@ -50,7 +50,7 @@ if (window.DeviceMotionEvent) {
         var biasZ = Math.abs(cur.z - pre.z);
         lastMotion = event;
         
-        if (biasX > biasZ && biasX > 25 && (biasX + biasY) > 35 && (new Date() - lastTime) > 1500) {
+        if (biasX > biasZ && biasX > 20 && (biasX + biasY) > 30 && (new Date() - lastTime) > 1500) {
             index = index % 3 + 1;
             $('.ablock').removeClass('selected');
             $('.ablock[index=' + index + ']').addClass('selected');
