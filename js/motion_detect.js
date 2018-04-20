@@ -31,7 +31,7 @@ if (window.DeviceMotionEvent) {
     var index = 0;
 
     window.addEventListener('devicemotion', function (event) {
-        if ('undefined' === lastMotion) { // initialization
+        if ('undefined' === typeof lastMotion) { // initialization
             lastMotion = event;;
             return;
         }
@@ -42,7 +42,7 @@ if (window.DeviceMotionEvent) {
         
         var pre = lastMotion.accelerationIncludingGravity;
         var cur = event.accelerationIncludingGravity;
-        if (Math.abs(cur.x-pre.x) > 45 &&  Math.abs(cur.y-pre.y) > 30) {
+        if (Math.abs(cur.x-pre.x) > 45 &&  Math.abs(cur.y-pre.y) > 30 && Math.abs(cur.z-pre.z) {
             index = index % 3 + 1;
             $('.ablock').removeClass('selected');
             $('.ablock[index=' + index + ']').addClass('selected');
